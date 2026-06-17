@@ -1,0 +1,15 @@
+version: "3.9"
+services:
+  speech-to-text:
+    build: .
+    ports:
+      - "7865:7865"
+    environment:
+      - WHISPER_MODEL_SIZE=small
+      - PORT=7865
+      - HOST=0.0.0.0
+    volumes:
+      - whisper_cache:/root/.cache
+
+volumes:
+  whisper_cache:

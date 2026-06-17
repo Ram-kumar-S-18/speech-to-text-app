@@ -1,0 +1,18 @@
+[build]
+  publish = "dist"
+  command = "python build_static.py"
+
+[[redirects]]
+  from = "/x"
+  to = "http://localhost:7865/x" # Default fallback, replace with your production API URL (e.g. on Cloud Run)
+  status = 200
+  force = true
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Content-Security-Policy = "default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com 'unsafe-inline' https://cdn.jsdelivr.net; font-src 'self' https://fonts.gstatic.com https://cdn.jsdelivr.net; connect-src 'self'; img-src 'self' data:; media-src 'self' blob:;"
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "no-referrer"
+    Permissions-Policy = "microphone=(self)"

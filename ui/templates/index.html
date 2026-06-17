@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Speech to Text</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+  <div class="glow-orb orb-1"></div>
+  <div class="glow-orb orb-2"></div>
+  <button class="theme" id="theme" aria-label="Toggle theme"><i class="ri-moon-line"></i></button>
+  <div class="app-shell">
+    <div class="app-header">
+      <div class="app-logo">
+        <i class="ri-mic-2-fill logo-icon"></i>
+        <span>VoiceScribe</span>
+      </div>
+      <div class="model-badge">Base Model</div>
+    </div>
+    
+    <div class="app-body">
+      <div class="visualizer-container">
+        <canvas id="viz"></canvas>
+        <div class="stat-badge" id="stat">Ready</div>
+      </div>
+      
+      <div class="transcript-container">
+        <textarea id="box" placeholder="Start speaking to transcribe..." readonly></textarea>
+        <div class="actions-row">
+          <button class="action-btn btn-copy" id="btn-copy">
+            <i class="ri-file-copy-line"></i>
+            <span>Copy</span>
+          </button>
+          <button class="action-btn btn-clear" id="btn-clear">
+            <i class="ri-delete-bin-line"></i>
+            <span>Clear</span>
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <div class="app-footer">
+      <div class="footer-settings">
+        <div class="mic-selector-container">
+          <span class="mic-label">Mic:</span>
+          <div class="custom-select flex-1">
+            <div class="select-trigger" id="mic-trigger">
+              <span id="mic-trigger-text">Loading microphone...</span>
+              <i class="ri-arrow-down-s-line"></i>
+            </div>
+            <div class="select-options" id="mic-options">
+            </div>
+          </div>
+          <input type="hidden" id="mic-select" value="">
+        </div>
+        
+        <label class="custom-checkbox">
+          <input type="checkbox" id="correct-check" checked>
+          <span class="checkbox-box">
+            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          </span>
+          <span>Auto-Correct</span>
+        </label>
+      </div>
+      
+      <div class="record-section">
+        <div class="mic-outer">
+          <div class="mic-ring" id="r1"></div>
+          <div class="mic-ring" id="r2"></div>
+          <div class="mic-ring" id="r3"></div>
+          <button class="mic" id="mic" aria-label="Toggle recording">
+            <i class="ri-mic-fill"></i>
+          </button>
+        </div>
+      </div>
+      <div class="t" id="time"></div>
+    </div>
+  </div>
+  <input type="hidden" id="model-select" value="base">
+  <span class="sp" id="sp"></span>
+  <script defer src="/static/js/main.js"></script>
+</body>
+</html>
