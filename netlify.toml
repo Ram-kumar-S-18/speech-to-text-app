@@ -4,7 +4,7 @@
 
 [[redirects]]
   from = "/x"
-  to = "http://localhost:7865/x" # Default fallback, replace with your production API URL (e.g. on Cloud Run)
+  to = "https://speech-to-text-app-5kuv.onrender.com/x"
   status = 200
   force = true
 
