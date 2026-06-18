@@ -396,7 +396,8 @@
               const modelVal = document.getElementById('model-select').value;
               const correctVal = correctCheck.checked;
               
-              const fetchUrl = window.APP_CONFIG.API_URL + '/x';
+              const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+              const fetchUrl = isLocal ? '/x' : 'https://speech-to-text-app-5kuv.onrender.com/x';
               
               const resp = await fetch(fetchUrl, {
                 method: 'POST',
