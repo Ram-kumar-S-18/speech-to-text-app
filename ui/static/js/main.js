@@ -401,7 +401,7 @@
               if (window.APP_CONFIG && window.APP_CONFIG.API_URL) {
                 apiBase = window.APP_CONFIG.API_URL;
               } else {
-                apiBase = isLocal ? '' : 'https://speech-to-text-app-5kuv.onrender.com';
+                apiBase = isLocal ? '' : 'https://ramkumars18-speech-to-text-backend.hf.space';
               }
               const fetchUrl = apiBase.endsWith('/') ? apiBase + 'x' : apiBase + '/x';
               

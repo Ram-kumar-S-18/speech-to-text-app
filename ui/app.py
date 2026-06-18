@@ -94,7 +94,7 @@ class DictateApp:
                 "script-src 'self'; "
                 "style-src 'self' https://fonts.googleapis.com 'unsafe-inline' https://cdn.jsdelivr.net; "
                 "font-src 'self' https://fonts.gstatic.com https://cdn.jsdelivr.net; "
-                "connect-src 'self' https://speech-to-text-app-5kuv.onrender.com; "
+                "connect-src 'self' https://ramkumars18-speech-to-text-backend.hf.space; "
                 "img-src 'self' data:; "
                 "media-src 'self' blob:;"
             )
