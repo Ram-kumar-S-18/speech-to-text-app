@@ -36,7 +36,7 @@ RUN mkdir -p tmp && chown -R appuser:appuser /app
 EXPOSE 7860
 
 # Configuration defaults for production
-ENV WHISPER_MODEL_SIZE=base \
+ENV WHISPER_MODEL_SIZE=medium \
     PORT=7860 \
     HOST=0.0.0.0 \
     TMP_DIR=/tmp \
