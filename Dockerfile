@@ -33,13 +33,13 @@ RUN mkdir -p tmp && chown -R appuser:appuser /app
 
 # Run as root to support persistent volume mounts and avoid home folder permission restrictions
 
-EXPOSE 7865
+EXPOSE 7860
 
 # Configuration defaults for production
 ENV WHISPER_MODEL_SIZE=base \
-    PORT=7865 \
+    PORT=7860 \
     HOST=0.0.0.0 \
-    TMP_DIR=/app/tmp \
+    TMP_DIR=/tmp \
     WHISPER_CPU_THREADS=2 \
     OMP_NUM_THREADS=2 \
     LOG_LEVEL=INFO \

@@ -17,7 +17,7 @@ CHANNELS = int(os.getenv("AUDIO_CHANNELS", "1"))
 AUDIO_FORMAT = os.getenv("AUDIO_FORMAT", "wav")
 
 # Server Configuration
-PORT = int(os.getenv("PORT", "7865"))
+PORT = int(os.getenv("PORT", "7860"))
 HOST = os.getenv("HOST", "0.0.0.0")
 
 # Output Configuration
