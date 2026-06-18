@@ -22,9 +22,6 @@ def main():
     import config
     config.WHISPER_MODEL_SIZE = args.model
 
-    from transcription.whisper_stt import WhisperTranscriber
-    print(f"Pre-loading whisper '{args.model}'...")
-    WhisperTranscriber.load(args.model)
 
     app = DictateApp(tmp_dir=config.TMP_DIR)
     app.launch(host=args.host, port=args.port)
