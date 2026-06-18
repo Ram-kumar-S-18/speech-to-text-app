@@ -45,6 +45,6 @@ ENV WHISPER_MODEL_SIZE=base \
 
 # Health check
 HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
-    CMD python -c "import urllib.request; urllib.request.urlopen('http://localhost:7865').read()" || exit 1
+    CMD python -c "import urllib.request, os; port = os.getenv('PORT', '7865'); urllib.request.urlopen(f'http://localhost:{port}').read()" || exit 1
 
 CMD ["python", "main.py"]
