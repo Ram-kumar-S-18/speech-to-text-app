@@ -30,13 +30,7 @@ class DictateApp:
             if request.method == "OPTIONS":
                 response = self.app.make_response("")
                 origin = request.headers.get("Origin")
-                if origin == "https://voice-scribee.netlify.app":
-                    response.headers["Access-Control-Allow-Origin"] = origin
-                elif origin and (origin.startswith("http://localhost:") or origin.startswith("http://127.0.0.1:")):
-                    response.headers["Access-Control-Allow-Origin"] = origin
-                else:
-                    response.headers["Access-Control-Allow-Origin"] = "https://voice-scribee.netlify.app"
-                
+                response.headers["Access-Control-Allow-Origin"] = origin if origin else "*"
                 response.headers["Access-Control-Allow-Methods"] = "POST, OPTIONS"
                 response.headers["Access-Control-Allow-Headers"] = "Content-Type"
                 response.headers["Access-Control-Max-Age"] = "86400"
@@ -111,10 +105,9 @@ class DictateApp:
 
             # CORS headers for actual responses
             origin = request.headers.get("Origin")
-            if origin == "https://voice-scribee.netlify.app":
-                response.headers["Access-Control-Allow-Origin"] = origin
-            elif origin and (origin.startswith("http://localhost:") or origin.startswith("http://127.0.0.1:")):
-                response.headers["Access-Control-Allow-Origin"] = origin
+            response.headers["Access-Control-Allow-Origin"] = origin if origin else "*"
+            response.headers["Access-Control-Allow-Methods"] = "POST, OPTIONS"
+            response.headers["Access-Control-Allow-Headers"] = "Content-Type"
 
             return response
 

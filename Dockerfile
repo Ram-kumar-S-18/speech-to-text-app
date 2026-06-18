@@ -10,6 +10,7 @@ ENV PYTHONUNBUFFERED=1 \
 RUN apt-get update && apt-get install -y --no-install-recommends \
     ffmpeg \
     ca-certificates \
+    libsndfile1 \
     && rm -rf /var/lib/apt/lists/*
 
 # Create non-root user for security

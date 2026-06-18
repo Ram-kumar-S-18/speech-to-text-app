@@ -5,16 +5,14 @@
 
 window.APP_CONFIG = {
   // API endpoint for transcription
-  API_URL: window.location.hostname.includes('netlify.app') 
-    ? 'https://speech-to-text-api.onrender.com'
-    : window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+  API_URL: window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
     ? 'http://localhost:7865'
-    : window.location.origin,
+    : 'https://speech-to-text-app-5kuv.onrender.com',
   
   // Environment
-  ENVIRONMENT: window.location.hostname.includes('netlify.app') 
-    ? 'production'
-    : 'development',
+  ENVIRONMENT: window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+    ? 'development'
+    : 'production',
   
   // Debug mode
   DEBUG: window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'

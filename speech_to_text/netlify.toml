@@ -22,7 +22,7 @@ PYTHON_VERSION = "3.11"
 # API Redirects - Route transcription requests to Render backend
 [[redirects]]
   from = "/x"
-  to = "https://speech-to-text-api.onrender.com/x"
+  to = "https://speech-to-text-app-5kuv.onrender.com/x"
   status = 200
   force = true
   headers = { Access-Control-Allow-Origin = "*", Access-Control-Allow-Methods = "POST, OPTIONS, GET", Access-Control-Allow-Headers = "Content-Type, Accept" }
@@ -38,7 +38,7 @@ PYTHON_VERSION = "3.11"
   for = "/*"
   [headers.values]
     # Content Security Policy - Allow connections to Render backend
-    Content-Security-Policy = "default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com 'unsafe-inline' https://cdn.jsdelivr.net; font-src 'self' https://fonts.gstatic.com https://cdn.jsdelivr.net; connect-src 'self' https://speech-to-text-api.onrender.com https://speech-to-text-app-5kuv.onrender.com; img-src 'self' data:; media-src 'self' blob:;"
+    Content-Security-Policy = "default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com 'unsafe-inline' https://cdn.jsdelivr.net; font-src 'self' https://fonts.gstatic.com https://cdn.jsdelivr.net; connect-src 'self' https://speech-to-text-app-5kuv.onrender.com; img-src 'self' data:; media-src 'self' blob:;"
     X-Frame-Options = "DENY"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "no-referrer"
@@ -59,10 +59,10 @@ PYTHON_VERSION = "3.11"
 # Environment configuration for Netlify
 [env]
   [env.production]
-    REACT_APP_API_URL = "https://speech-to-text-api.onrender.com"
+    REACT_APP_API_URL = "https://speech-to-text-app-5kuv.onrender.com"
     REACT_APP_ENVIRONMENT = "production"
   [env.preview]
-    REACT_APP_API_URL = "https://speech-to-text-api.onrender.com"
+    REACT_APP_API_URL = "https://speech-to-text-app-5kuv.onrender.com"
     REACT_APP_ENVIRONMENT = "preview"
   [env.development]
     REACT_APP_API_URL = "http://localhost:7865"

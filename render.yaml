@@ -33,7 +33,7 @@ services:
       mountPath: /root/.cache
       sizeGB: 10
     domains:
-      - speech-to-text-api.onrender.com
+      - speech-to-text-app-5kuv.onrender.com
     autoDeploy: true
     git:
       branch: main
