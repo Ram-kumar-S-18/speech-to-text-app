@@ -27,12 +27,17 @@ class WhisperTranscriber:
 
     def transcribe(self, audio_path: str, model_size: str = None) -> dict:
         model = self.load(model_size)
-        segments, info = model.transcribe(
-            audio_path,
-            beam_size=1,
-            vad_filter=True,
-            temperature=0.0,
-        )
-        text = " ".join(seg.text for seg in segments)
-        lang = info.language if info else "en"
-        return {"text": text.strip(), "language": lang}
+        try:
+            segments, info = model.transcribe(
+                audio_path,
+                beam_size=1,
+                vad_filter=True,
+                temperature=0.0,
+            )
+            text = " ".join(seg.text for seg in segments)
+            lang = info.language if info else "en"
+            return {"text": text.strip(), "language": lang}
+        except ValueError as e:
+            if "max() arg is an empty sequence" in str(e):
+                return {"text": "", "language": "en"}
+            raise e
