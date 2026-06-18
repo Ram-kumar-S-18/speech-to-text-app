@@ -73,8 +73,4 @@ PYTHON_VERSION = "3.11"
   directory = "netlify/functions"
   node_bundler = "esbuild"
 
-# Plugins
-[[plugins]]
-  package = "@netlify/plugin-nextjs"
-  [plugins.inputs]
-    skipBuild = false
+
