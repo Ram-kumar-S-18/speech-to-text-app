@@ -397,7 +397,13 @@
               const correctVal = correctCheck.checked;
               
               const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-              const fetchUrl = isLocal ? '/x' : 'https://speech-to-text-app-5kuv.onrender.com/x';
+              let apiBase = '';
+              if (window.APP_CONFIG && window.APP_CONFIG.API_URL) {
+                apiBase = window.APP_CONFIG.API_URL;
+              } else {
+                apiBase = isLocal ? '' : 'https://speech-to-text-app-5kuv.onrender.com';
+              }
+              const fetchUrl = apiBase.endsWith('/') ? apiBase + 'x' : apiBase + '/x';
               
               const resp = await fetch(fetchUrl, {
                 method: 'POST',

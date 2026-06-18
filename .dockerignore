@@ -20,6 +20,7 @@ env
 # Project
 tmp
 outputs
+models
 .env
 .env.local
 .pytest_cache

@@ -12,8 +12,15 @@ class WhisperTranscriber:
         size = model_size or WHISPER_MODEL_SIZE
         if cls._model is None or cls._model_size != size:
             threads = int(os.getenv("WHISPER_CPU_THREADS", os.getenv("OMP_NUM_THREADS", "4")))
-            print(f"Loading faster-whisper '{size}' (int8 CPU, threads={threads})...")
-            cls._model = WhisperModel(size, device="cpu", compute_type="int8", cpu_threads=threads)
+            # Check for local pre-downloaded model
+            current_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+            local_model_path = os.path.join(current_dir, "models", size)
+            if os.path.exists(local_model_path):
+                print(f"Loading faster-whisper '{size}' from local path '{local_model_path}' (int8 CPU, threads={threads})...")
+                cls._model = WhisperModel(local_model_path, device="cpu", compute_type="int8", cpu_threads=threads)
+            else:
+                print(f"Loading faster-whisper '{size}' from hub (int8 CPU, threads={threads})...")
+                cls._model = WhisperModel(size, device="cpu", compute_type="int8", cpu_threads=threads)
             cls._model_size = size
             print("Model ready.")
         return cls._model
