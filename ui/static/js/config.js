@@ -7,7 +7,7 @@ window.APP_CONFIG = {
   // API endpoint for transcription
   API_URL: window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
     ? 'http://localhost:7860'
-    : 'https://ramkumars18-speech-to-text-backend.hf.space',
+    : '',
   
   // Environment
   ENVIRONMENT: window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
