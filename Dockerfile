@@ -28,8 +28,7 @@ COPY . .
 # Ensure tmp directory exists and is writable
 RUN mkdir -p tmp && chown -R appuser:appuser /app
 
-# Switch to non-root user
-USER appuser
+# Run as root to support persistent volume mounts and avoid home folder permission restrictions
 
 EXPOSE 7865
 
