@@ -1,1 +1,1 @@
-web: python main.py
+web: gunicorn --workers 2 --worker-class sync --timeout 120 --bind 0.0.0.0:$PORT wsgi:app

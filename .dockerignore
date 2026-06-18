@@ -1,0 +1,59 @@
+# Git
+.git
+.gitignore
+.gitattributes
+
+# Python
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+*.so
+*.egg-info
+dist
+build
+*.egg
+.Python
+venv
+env
+
+# Project
+tmp
+outputs
+.env
+.env.local
+.pytest_cache
+.mypy_cache
+.coverage
+htmlcov
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+*~
+
+# Audio files (unless needed)
+*.wav
+*.webm
+*.mp3
+*.m4a
+
+# Documentation
+*.md
+docs/
+
+# CI/CD
+.github
+.gitlab-ci.yml
+.circleci
+
+# Other
+node_modules
+.npm
+.node_modules
