@@ -3,7 +3,7 @@ import uuid
 import base64
 import time
 from pathlib import Path
-from flask import Flask, jsonify, render_template
+from flask import Flask, jsonify, render_template, request
 
 from audio.processor import AudioProcessor
 from transcription.whisper_stt import WhisperTranscriber
@@ -25,9 +25,23 @@ class DictateApp:
         def index():
             return render_template("index.html")
 
-        @self.app.route("/x", methods=["POST"])
+        @self.app.route("/x", methods=["POST", "OPTIONS"])
         def transcribe():
-            from flask import request
+            if request.method == "OPTIONS":
+                response = self.app.make_response("")
+                origin = request.headers.get("Origin")
+                if origin == "https://voice-scribee.netlify.app":
+                    response.headers["Access-Control-Allow-Origin"] = origin
+                elif origin and (origin.startswith("http://localhost:") or origin.startswith("http://127.0.0.1:")):
+                    response.headers["Access-Control-Allow-Origin"] = origin
+                else:
+                    response.headers["Access-Control-Allow-Origin"] = "https://voice-scribee.netlify.app"
+                
+                response.headers["Access-Control-Allow-Methods"] = "POST, OPTIONS"
+                response.headers["Access-Control-Allow-Headers"] = "Content-Type"
+                response.headers["Access-Control-Max-Age"] = "86400"
+                return response
+
             t0 = time.time()
             webm = None
             wav = None
@@ -86,7 +100,7 @@ class DictateApp:
                 "script-src 'self'; "
                 "style-src 'self' https://fonts.googleapis.com 'unsafe-inline' https://cdn.jsdelivr.net; "
                 "font-src 'self' https://fonts.gstatic.com https://cdn.jsdelivr.net; "
-                "connect-src 'self'; "
+                "connect-src 'self' https://speech-to-text-app-5kuv.onrender.com; "
                 "img-src 'self' data:; "
                 "media-src 'self' blob:;"
             )
@@ -94,6 +108,14 @@ class DictateApp:
             response.headers["X-Content-Type-Options"] = "nosniff"
             response.headers["Referrer-Policy"] = "no-referrer"
             response.headers["Permissions-Policy"] = "microphone=(self)"
+
+            # CORS headers for actual responses
+            origin = request.headers.get("Origin")
+            if origin == "https://voice-scribee.netlify.app":
+                response.headers["Access-Control-Allow-Origin"] = origin
+            elif origin and (origin.startswith("http://localhost:") or origin.startswith("http://127.0.0.1:")):
+                response.headers["Access-Control-Allow-Origin"] = origin
+
             return response
 
     def launch(self, host="0.0.0.0", port=7865):

@@ -396,7 +396,10 @@
               const modelVal = document.getElementById('model-select').value;
               const correctVal = correctCheck.checked;
               
-              const resp = await fetch('/x', {
+              const isNetlify = window.location.hostname.includes('netlify.app');
+              const fetchUrl = isNetlify ? 'https://speech-to-text-app-5kuv.onrender.com/x' : '/x';
+              
+              const resp = await fetch(fetchUrl, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ a: b64, model: modelVal, correct: correctVal })
