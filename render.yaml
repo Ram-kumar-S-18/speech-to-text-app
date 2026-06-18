@@ -1,0 +1,50 @@
+services:
+  - type: web
+    name: speech-to-text-backend
+    env: python
+    plan: standard
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn --workers 2 --worker-class sync --timeout 120 --bind 0.0.0.0:$PORT wsgi:app
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.11"
+      - key: WHISPER_MODEL_SIZE
+        value: base
+      - key: PORT
+        value: "10000"
+      - key: HOST
+        value: 0.0.0.0
+      - key: LOG_LEVEL
+        value: INFO
+      - key: WHISPER_CPU_THREADS
+        value: "4"
+      - key: OMP_NUM_THREADS
+        value: "4"
+      - key: SAMPLE_RATE
+        value: "16000"
+      - key: AUDIO_CHANNELS
+        value: "1"
+      - key: AUDIO_FORMAT
+        value: wav
+    healthCheckPath: /
+    preDeployCommand: mkdir -p tmp
+    disk:
+      name: whisper-cache
+      mountPath: /root/.cache
+      sizeGB: 10
+    domains:
+      - speech-to-text-api.onrender.com
+    autoDeploy: true
+    git:
+      branch: main
+    buildFilter:
+      paths:
+        - requirements.txt
+        - Dockerfile
+        - wsgi.py
+        - config.py
+        - main.py
+        - audio/**
+        - transcription/**
+        - ui/app.py
+        - utils/**

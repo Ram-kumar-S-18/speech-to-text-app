@@ -396,8 +396,7 @@
               const modelVal = document.getElementById('model-select').value;
               const correctVal = correctCheck.checked;
               
-              const isNetlify = window.location.hostname.includes('netlify.app');
-              const fetchUrl = isNetlify ? 'https://speech-to-text-app-5kuv.onrender.com/x' : '/x';
+              const fetchUrl = window.APP_CONFIG.API_URL + '/x';
               
               const resp = await fetch(fetchUrl, {
                 method: 'POST',
